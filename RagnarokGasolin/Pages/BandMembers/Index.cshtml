@@ -1,0 +1,107 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Gasolin Bandmedlemmer - Ragnarok Rockmuseum";
+}
+
+<div class="band-members-hero">
+    <div class="container">
+        <h1 class="display-4">Gasolins Bandmedlemmer</h1>
+        <p class="lead">Mød de fire musikere, der skabte et af Danmarks mest indflydelsesrige rockbands</p>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-12">
+            <p>
+                Gasolin blev dannet i 1969 af Kim Larsen, Franz Beckerlee og Wili Jønsson. Bjørn Uglebjerg var bandets første trommeslager,
+                men blev erstattet af Søren Berlev i 1971. Sammen skabte de fire musikere en unik lyd, der har præget dansk rockmusik i årtier.
+                Lær mere om hver af bandmedlemmerne nedenfor.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach (var member in Model.BandMembers)
+        {
+            <div class="col-md-6 mb-5">
+                <div class="card band-member-card h-100">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="@member.ImageUrl" class="card-img" alt="@member.Name">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h2 class="card-title">@member.Name</h2>
+                                <h6 class="card-subtitle mb-2 text-muted">@member.Role</h6>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        Født: @member.BirthDate.ToString("d. MMMM yyyy")
+                                        @if (member.DeathDate.HasValue)
+                                        {
+                                            <span> | Død: @member.DeathDate.Value.ToString("d. MMMM yyyy")</span>
+                                        }
+                                    </small>
+                                </p>
+                                <p class="card-text">@member.Biography.Substring(0, Math.Min(150, member.Biography.Length))...</p>
+                                <p class="card-text"><small class="text-muted">Aktiv i Gasolin: @member.ActiveYears</small></p>
+                                <a asp-page="./Details" asp-route-id="@member.Id" class="btn btn-primary">Læs mere</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="row mt-4 mb-5">
+        <div class="col-12">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h3>Udforsk mere</h3>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a asp-page="/Timeline" class="btn btn-outline-primary btn-block">Se tidslinje</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a asp-page="/Media" class="btn btn-outline-primary btn-block">Udforsk mediearkivet</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a asp-page="/Exhibition" class="btn btn-outline-primary btn-block">Om udstillingen</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .band-members-hero {
+            background-color: #2c3e50;
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 30px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/band/gasolin-group.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .band-member-card {
+            transition: transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .band-member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .band-member-card .card-img {
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+} 

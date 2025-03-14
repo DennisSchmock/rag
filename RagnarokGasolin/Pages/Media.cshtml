@@ -1,0 +1,159 @@
+@page
+@model RagnarokGasolin.Pages.MediaModel
+@{
+    ViewData["Title"] = "Gasolin' Mediearkiv";
+}
+
+<div class="container mt-5">
+    <h1 class="display-4 mb-4">Gasolin' Mediearkiv</h1>
+
+    <div class="mb-4">
+        <p class="lead">
+            Udforsk vores samling af sjældne optagelser, interviews, koncertvideoer og fotografier fra Gasolin's
+            karriere.
+        </p>
+    </div>
+
+    <!-- Filter buttons -->
+    <div class="mb-4">
+        <div class="btn-group" role="group" aria-label="Media filters">
+            <button type="button" class="btn btn-outline-primary active" data-filter="all">Alle</button>
+            <button type="button" class="btn btn-outline-primary" data-filter="Audio">Lyd</button>
+            <button type="button" class="btn btn-outline-primary" data-filter="Video">Video</button>
+            <button type="button" class="btn btn-outline-primary" data-filter="Image">Billeder</button>
+        </div>
+    </div>
+
+    <!-- Media grid -->
+    <div class="row media-grid">
+        @foreach (var media in Model.MediaItems)
+        {
+            <div class="col-md-4 mb-4 media-item" data-type="@media.Type" data-year="@media.GetYear()">
+                <div class="card h-100">
+                    <img src="@media.ThumbnailUrl" class="card-img-top" alt="@media.Title">
+                    <div class="card-body">
+                        <h5 class="card-title">@media.Title</h5>
+                        <p class="card-text">@media.Description</p>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                <i class="bi bi-calendar"></i> @media.GetFormattedDate()
+                                @if (!string.IsNullOrEmpty(media.Duration))
+                                {
+                                    <span class="ml-2"><i class="bi bi-clock"></i> @media.Duration</span>
+                                }
+                            </small>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        @if (media.Type == "Video")
+                        {
+                            <a href="@media.Url" class="btn btn-primary btn-sm media-link" data-type="video">
+                                <i class="bi bi-play-fill"></i> Afspil video
+                            </a>
+                        }
+                        else if (media.Type == "Audio")
+                        {
+                            <a href="@media.Url" class="btn btn-primary btn-sm media-link" data-type="audio">
+                                <i class="bi bi-music-note-beamed"></i> Afspil lyd
+                            </a>
+                        }
+                        else if (media.Type == "Image")
+                        {
+                            <a href="@media.Url" class="btn btn-primary btn-sm media-link" data-type="image">
+                                <i class="bi bi-image"></i> Vis billede
+                            </a>
+                        }
+                        <small class="text-muted float-right mt-1">Kilde: @media.Source</small>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Media Modal -->
+<div class="modal fade" id="mediaModal" tabindex="-1" aria-labelledby="mediaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mediaModalLabel">Media</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="mediaModalBody">
+                <!-- Media content will be inserted here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Filter media items
+            $('.btn-group button').click(function () {
+                $('.btn-group button').removeClass('active');
+                $(this).addClass('active');
+
+                var filter = $(this).data('filter');
+
+                if (filter === 'all') {
+                    $('.media-item').show();
+                } else {
+                    $('.media-item').hide();
+                    $('.media-item[data-type="' + filter + '"]').show();
+                }
+            });
+
+            // Handle media links
+            $('.media-link').click(function (e) {
+                e.preventDefault();
+
+                var url = $(this).attr('href');
+                var type = $(this).data('type');
+                var title = $(this).closest('.card').find('.card-title').text();
+
+                $('#mediaModalLabel').text(title);
+
+                var content = '';
+                if (type === 'video') {
+                    content = '<div class="ratio ratio-16x9"><video controls><source src="' + url + '" type="video/mp4">Your browser does not support the video tag.</video></div>';
+                } else if (type === 'audio') {
+                    content = '<audio controls class="w-100"><source src="' + url + '" type="audio/mpeg">Your browser does not support the audio tag.</audio>';
+                } else if (type === 'image') {
+                    content = '<img src="' + url + '" class="img-fluid" alt="' + title + '">';
+                }
+
+                $('#mediaModalBody').html(content);
+                var mediaModal = new bootstrap.Modal(document.getElementById('mediaModal'));
+                mediaModal.show();
+            });
+
+            // Reset modal content when closed
+            $('#mediaModal').on('hidden.bs.modal', function () {
+                $('#mediaModalBody').html('');
+            });
+        });
+    </script>
+}
+
+@section Styles {
+    <style>
+        .media-grid .card {
+            transition: transform 0.3s ease;
+        }
+
+        .media-grid .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+
+        .media-grid .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .media-link {
+            text-decoration: none;
+        }
+    </style>
+}

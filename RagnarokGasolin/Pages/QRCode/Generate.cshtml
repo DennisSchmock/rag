@@ -1,0 +1,51 @@
+@page
+@model RagnarokGasolin.Pages.QRCode.GenerateModel
+@{
+    ViewData["Title"] = "Generate QR Code";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Generate QR Code</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="form-group">
+                            <label asp-for="ExhibitId">Exhibit ID</label>
+                            <select asp-for="ExhibitId" class="form-control" asp-items="Model.ExhibitItems"></select>
+                            <span asp-validation-for="ExhibitId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PixelSize">Pixel Size</label>
+                            <input asp-for="PixelSize" class="form-control" />
+                            <span asp-validation-for="PixelSize" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Generate QR Code</button>
+                    </form>
+
+                    @if (Model.QRCodeImageUrl != null)
+                    {
+                        <div class="mt-4 text-center">
+                            <h3>Generated QR Code</h3>
+                            <img src="@Model.QRCodeImageUrl" alt="QR Code" class="img-fluid" style="max-width: 300px;" />
+                            <p class="mt-2">
+                                <a href="@Model.QRCodeImageUrl" download="qrcode.png" class="btn btn-success">Download QR
+                                    Code</a>
+                            </p>
+                        </div>
+                    }
+                </div>
+                <div class="card-footer">
+                    <a asp-page="/Exhibition" class="btn btn-secondary">Back to Exhibition</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

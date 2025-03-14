@@ -1,0 +1,162 @@
+@page
+@model ExhibitionModel
+@{
+    ViewData["Title"] = "Gasolin Særudstilling - Ragnarok Rockmuseum";
+}
+
+<div class="exhibition-hero">
+    <div class="container">
+        <h1 class="display-4">Gasolin Særudstilling</h1>
+        <p class="lead">Oplev det legendariske danske rockband på Roskilde Festival</p>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Om udstillingen</h2>
+            <p class="lead">
+                Ragnarok Rockmuseum præsenterer en særudstilling om Gasolin på årets Roskilde Festival.
+                Udstillingen giver festivalgæsterne et dybdegående indblik i bandets historie, medlemmerne og deres
+                musikalske arv.
+            </p>
+
+            <p>
+                Særudstillingen tager udgangspunkt i en specialbygget kulisse, der genskaber Gasolins
+                øvelokale og danner rammen om den fysiske udstilling. Rockmuseet har bygget
+                denne kulisse, som er med på festivalen og fungerer som det centrale omdrejningspunkt
+                for oplevelsen. Kulissen indeholder autentiske rekvisitter, såsom gamle forstærkere,
+                instrumenter og plakater fra Gasolins storhedstid. Derudover har museet skabt detaljerede
+                voksdukker af bandmedlemmerne for at give festivalgæsterne en så virkelighedstro
+                oplevelse som muligt.
+            </p>
+
+            <div class="card mb-4">
+                <div class="card-body bg-light">
+                    <h4>Udstillingen indeholder:</h4>
+                    <ul class="mb-0">
+                        <li>Interaktive displays med videoer, interviews og liveoptagelser</li>
+                        <li>Instrumenter og memorabilia, herunder originalt udstyr brugt af bandet</li>
+                        <li>En tidslinje, der viser bandets vigtigste begivenheder</li>
+                        <li>Fortællinger fra fans og musikere, der forklarer Gasolins betydning for dansk musik</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Interaktiv oplevelse med QR-koder</h3>
+            <p>
+                For at gøre udstillingen mere interaktiv kan festivalgæsterne scanne QR-koder, der er
+                placeret ved forskellige elementer i udstillingen. Disse QR-koder fører til specifikke
+                sider på denne webapplikation, hvor du kan få yderligere information, læse biografier, se videoer,
+                høre interviews eller opleve digitale rekonstruktioner af Gasolins historie.
+            </p>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Placering på festivalen</h5>
+                            <p class="card-text">Udstillingen finder sted i Kulturzonen, tæt ved Orange Scene.</p>
+                            <p class="card-text"><strong>Åbningstider:</strong> Alle dage kl. 10:00 - 20:00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Adgang</h5>
+                            <p class="card-text">Udstillingen er gratis for alle festivalgæster med armbånd.</p>
+                            <p class="card-text"><strong>Varighed:</strong> Ca. 30-45 minutter</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="/images/exhibition/exhibition-preview.jpg" class="card-img-top" alt="Gasolin Udstilling">
+                <div class="card-body">
+                    <h5 class="card-title">Særudstilling på Roskilde Festival</h5>
+                    <p class="card-text">
+                        Oplev vores særudstilling om Gasolin på Roskilde Festival, hvor du kan træde ind i bandets
+                        rekonstruerede øvelokale og få et unikt indblik i deres kreative proces.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Sådan bruger du QR-koder</h5>
+                </div>
+                <div class="card-body">
+                    <ol class="mb-0">
+                        <li>Åbn kameraet på din smartphone</li>
+                        <li>Hold kameraet over QR-koden</li>
+                        <li>Tryk på notifikationen, der dukker op</li>
+                        <li>Udforsk det digitale indhold</li>
+                    </ol>
+                </div>
+                <div class="card-footer text-center">
+                    <img src="/images/exhibition/qr-code-example.png" alt="QR-kode eksempel" class="img-fluid"
+                        style="max-width: 150px;">
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Udstillingsgenstande</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    @foreach (var item in Model.ExhibitItems)
+                    {
+                        <li class="list-group-item">
+                            <a asp-page="/QRCode/Index" asp-route-id="@item.Id">
+                                @item.Name
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5 mb-5">
+        <div class="col-12">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h3>Udforsk mere</h3>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a asp-page="/Timeline" class="btn btn-outline-primary btn-block">Se tidslinje</a>
+                        </div>
+                        <div class="col-md-3">
+                            <a asp-page="/BandMembers/Index" class="btn btn-outline-primary btn-block">Bandmedlemmer</a>
+                        </div>
+                        <div class="col-md-3">
+                            <a asp-page="/Media" class="btn btn-outline-primary btn-block">Mediearkiv</a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="https://www.ragnarock.dk" target="_blank"
+                                class="btn btn-outline-primary btn-block">Ragnarok Museum</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .exhibition-hero {
+            background-color: #2c3e50;
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 30px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/exhibition/exhibition-hero.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+}

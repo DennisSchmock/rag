@@ -1,0 +1,103 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Gasolin Særudstilling - Ragnarok Rockmuseum";
+}
+
+<div class="home-hero">
+    <div class="container">
+        <h1 class="display-4">Gasolin Særudstilling</h1>
+        <p class="lead">Oplev det legendariske danske rockband på Roskilde Festival</p>
+        <a asp-page="/Exhibition" class="btn btn-primary btn-lg mt-3">Læs om udstillingen</a>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Velkommen til Gasolin Særudstillingen</h2>
+            <p class="lead">
+                Ragnarok Rockmuseum præsenterer en særudstilling om Gasolin på årets Roskilde Festival.
+                Udstillingen giver festivalgæsterne et dybdegående indblik i bandets historie, medlemmerne og deres
+                musikalske arv.
+            </p>
+
+            <p>
+                Gasolin var et af Danmarks mest indflydelsesrige rockbands, dannet i 1969 af Kim Larsen,
+                Franz Beckerlee, Wili Jønsson og Bjørn Uglebjerg, hvor sidstnævnte senere blev erstattet af
+                Søren Berlev. Bandet var aktivt indtil 1978 og opnåede enorm popularitet med deres
+                energiske og melodiske rockmusik, som blandede elementer fra folkemusik, blues og
+                progressiv rock.
+            </p>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Udforsk Gasolin</h5>
+                </div>
+                <div class="list-group list-group-flush">
+                    <a asp-page="/Exhibition" class="list-group-item list-group-item-action">
+                        <i class="bi bi-building"></i> Om udstillingen
+                    </a>
+                    <a asp-page="/BandMembers/Index" class="list-group-item list-group-item-action">
+                        <i class="bi bi-people"></i> Bandmedlemmer
+                    </a>
+                    <a asp-page="/Timeline" class="list-group-item list-group-item-action">
+                        <i class="bi bi-calendar"></i> Tidslinje
+                    </a>
+                    <a asp-page="/Media" class="list-group-item list-group-item-action">
+                        <i class="bi bi-collection-play"></i> Mediearkiv
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="/images/band-members/band-members-thumb.jpg" class="card-img-top" alt="Gasolin Bandmedlemmer">
+                <div class="card-body">
+                    <h5 class="card-title">Bandmedlemmer</h5>
+                    <p class="card-text">Lær mere om Kim Larsen, Franz Beckerlee, Wili Jønsson og Søren Berlev.</p>
+                    <a asp-page="/BandMembers/Index" class="btn btn-primary">Se bandmedlemmer</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="/images/timeline/timeline-thumb.jpg" class="card-img-top" alt="Gasolin Tidslinje">
+                <div class="card-body">
+                    <h5 class="card-title">Tidslinje</h5>
+                    <p class="card-text">Udforsk Gasolins historie fra dannelsen i 1969 til opløsningen i 1978.</p>
+                    <a asp-page="/Timeline" class="btn btn-primary">Se tidslinje</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="/images/media/media-thumb.jpg" class="card-img-top" alt="Gasolin Mediearkiv">
+                <div class="card-body">
+                    <h5 class="card-title">Mediearkiv</h5>
+                    <p class="card-text">Se videoer, lyt til interviews og udforsk sjældne optagelser med Gasolin.</p>
+                    <a asp-page="/Media" class="btn btn-primary">Udforsk mediearkiv</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <style>
+        .home-hero {
+            background-color: #2c3e50;
+            color: white;
+            padding: 80px 0;
+            margin-bottom: 30px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/home-hero.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+}
