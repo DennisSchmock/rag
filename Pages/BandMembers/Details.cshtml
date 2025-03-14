@@ -1,0 +1,231 @@
+@page "{id:int}"
+@model RagnarokGasolin.Pages.BandMembers.DetailsModel
+@{
+    ViewData["Title"] = $"{Model.BandMember.Name} - Gasolin'";
+}
+
+@if (Model.BandMember == null)
+{
+    <div class="container mt-5">
+        <div class="alert alert-danger">
+            <h2>Band Member Not Found</h2>
+            <p>Sorry, the band member you're looking for could not be found.</p>
+            <a asp-page="/Index" class="btn btn-primary">Return to Home</a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="member-hero"
+        style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('@Model.BandMember.ImageUrl');">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="@Model.BandMember.ImageUrl" alt="@Model.BandMember.Name"
+                        class="img-fluid rounded-circle member-portrait">
+                </div>
+                <div class="col-md-8 d-flex align-items-center">
+                    <div class="member-info text-white">
+                        <h1 class="display-4">@Model.BandMember.Name</h1>
+                        <p class="lead">@Model.BandMember.Role</p>
+                        <div class="member-years">
+                            <span class="badge badge-light mr-2">Født: @Model.BandMember.GetFormattedBirthDate()</span>
+                            @if (Model.BandMember.DeathDate.HasValue)
+                            {
+                                <span class="badge badge-light">Død: @Model.BandMember.GetFormattedDeathDate()</span>
+                            }
+                        </div>
+                        <div class="mt-3">
+                            <span class="badge badge-primary">Aktiv i Gasolin: @Model.BandMember.ActiveYears</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Biografi</h2>
+                <p class="lead">@Model.BandMember.Biography</p>
+
+                <h3 class="mt-4">Bidrag til Gasolin</h3>
+                <p>@Model.BandMember.Contributions</p>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h4>Instrumenter</h4>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        @foreach (var instrument in Model.BandMember.Instruments)
+                        {
+                            <li class="list-group-item">@instrument</li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Andre bandmedlemmer</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach (var member in Model.OtherBandMembers)
+                            {
+                                <div class="col-6 mb-3">
+                                    <a asp-page="./Details" asp-route-id="@member.Id" class="text-decoration-none">
+                                        <img src="@member.ImageUrl" alt="@member.Name" class="img-fluid rounded-circle mb-2"
+                                            style="width: 80px; height: 80px; object-fit: cover;">
+                                        <p class="text-center mb-0">@member.Name</p>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if (Model.RelatedMedia.Any())
+        {
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h2>Relaterede medier</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                @foreach (var media in Model.RelatedMedia)
+                {
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <img src="@media.ThumbnailUrl" class="card-img-top" alt="@media.Title">
+                            <div class="card-body">
+                                <h5 class="card-title">@media.Title</h5>
+                                <p class="card-text">@media.Description</p>
+                            </div>
+                            <div class="card-footer">
+                                @if (media.Type == "Video")
+                                {
+                                    <a href="@media.Url" class="btn btn-primary btn-sm media-link" data-type="video">
+                                        <i class="bi bi-play-fill"></i> Afspil video
+                                    </a>
+                                }
+                                else if (media.Type == "Audio")
+                                {
+                                    <a href="@media.Url" class="btn btn-primary btn-sm media-link" data-type="audio">
+                                        <i class="bi bi-music-note-beamed"></i> Afspil lyd
+                                    </a>
+                                }
+                                else if (media.Type == "Image")
+                                {
+                                    <a href="@media.Url" class="btn btn-primary btn-sm media-link" data-type="image">
+                                        <i class="bi bi-image"></i> Vis billede
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+
+        <div class="row mt-5 mb-5">
+            <div class="col-12">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <h3>Udforsk mere</h3>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <a asp-page="/Timeline" class="btn btn-outline-primary btn-block">Se tidslinje</a>
+                            </div>
+                            <div class="col-md-4">
+                                <a asp-page="/BandMembers/Index" class="btn btn-outline-primary btn-block">Alle
+                                    bandmedlemmer</a>
+                            </div>
+                            <div class="col-md-4">
+                                <a asp-page="/Media" class="btn btn-outline-primary btn-block">Udforsk mediearkivet</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Media Modal -->
+<div class="modal fade" id="mediaModal" tabindex="-1" aria-labelledby="mediaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mediaModalLabel">Media</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="mediaModalBody">
+                <!-- Media content will be inserted here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .member-hero {
+            padding: 80px 0;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 30px;
+        }
+
+        .member-portrait {
+            border: 5px solid white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .member-info {
+            padding: 20px;
+        }
+
+        .member-years {
+            margin-top: 10px;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Handle media links
+            $('.media-link').click(function (e) {
+                e.preventDefault();
+
+                var url = $(this).attr('href');
+                var type = $(this).data('type');
+                var title = $(this).closest('.card').find('.card-title').text();
+
+                $('#mediaModalLabel').text(title);
+
+                var content = '';
+                if (type === 'video') {
+                    content = '<div class="ratio ratio-16x9"><video controls><source src="' + url + '" type="video/mp4">Your browser does not support the video tag.</video></div>';
+                } else if (type === 'audio') {
+                    content = '<audio controls class="w-100"><source src="' + url + '" type="audio/mpeg">Your browser does not support the audio tag.</audio>';
+                } else if (type === 'image') {
+                    content = '<img src="' + url + '" class="img-fluid" alt="' + title + '">';
+                }
+
+                $('#mediaModalBody').html(content);
+                var mediaModal = new bootstrap.Modal(document.getElementById('mediaModal'));
+                mediaModal.show();
+            });
+
+            // Reset modal content when closed
+            $('#mediaModal').on('hidden.bs.modal', function () {
+                $('#mediaModalBody').html('');
+            });
+        });
+    </script>
+}

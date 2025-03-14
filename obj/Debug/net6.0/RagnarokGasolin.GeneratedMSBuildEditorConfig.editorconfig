@@ -1,0 +1,75 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = RagnarokGasolin
+build_property.RootNamespace = RagnarokGasolin
+build_property.ProjectDir = /Users/DENSC/istdev/ragnero/RagnarokGasolin/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/DENSC/istdev/ragnero/RagnarokGasolin
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/DENSC/istdev/ragnero/RagnarokGasolin/Pages/BandMembers/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQmFuZE1lbWJlcnMvRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/DENSC/istdev/ragnero/RagnarokGasolin/Pages/BandMembers/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQmFuZE1lbWJlcnMvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/DENSC/istdev/ragnero/RagnarokGasolin/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/DENSC/istdev/ragnero/RagnarokGasolin/Pages/Exhibition.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXhoaWJpdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/DENSC/istdev/ragnero/RagnarokGasolin/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/DENSC/istdev/ragnero/RagnarokGasolin/Pages/Media.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTWVkaWEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/DENSC/istdev/ragnero/RagnarokGasolin/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/DENSC/istdev/ragnero/RagnarokGasolin/Pages/QRCode/Generate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUVJDb2RlL0dlbmVyYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/DENSC/istdev/ragnero/RagnarokGasolin/Pages/QRCode/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUVJDb2RlL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/DENSC/istdev/ragnero/RagnarokGasolin/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/DENSC/istdev/ragnero/RagnarokGasolin/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/DENSC/istdev/ragnero/RagnarokGasolin/Pages/Timeline.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVGltZWxpbmUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/DENSC/istdev/ragnero/RagnarokGasolin/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/DENSC/istdev/ragnero/RagnarokGasolin/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
