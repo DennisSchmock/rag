@@ -1,0 +1,8 @@
+/Users/DENSC/istdev/ragnero/RagnarokGasolin/obj/Debug/net6.0/RagnarokGasolin.GeneratedMSBuildEditorConfig.editorconfig
+/Users/DENSC/istdev/ragnero/RagnarokGasolin/obj/Debug/net6.0/RagnarokGasolin.AssemblyInfoInputs.cache
+/Users/DENSC/istdev/ragnero/RagnarokGasolin/obj/Debug/net6.0/RagnarokGasolin.AssemblyInfo.cs
+/Users/DENSC/istdev/ragnero/RagnarokGasolin/obj/Debug/net6.0/RagnarokGasolin.csproj.CoreCompileInputs.cache
+/Users/DENSC/istdev/ragnero/RagnarokGasolin/obj/Debug/net6.0/RagnarokGasolin.MvcApplicationPartsAssemblyInfo.cache
+/Users/DENSC/istdev/ragnero/RagnarokGasolin/obj/Debug/net6.0/RagnarokGasolin.RazorAssemblyInfo.cache
+/Users/DENSC/istdev/ragnero/RagnarokGasolin/obj/Debug/net6.0/RagnarokGasolin.RazorAssemblyInfo.cs
+/Users/DENSC/istdev/ragnero/RagnarokGasolin/obj/Debug/net6.0/RagnarokGasolin.csproj.AssemblyReference.cache
